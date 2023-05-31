@@ -97,12 +97,36 @@ GND is the ground pin.
 
 
 ## STM 32 CUBE PROGRAM :
-
-
+```
+while (1)
+  {
+	  HAL_ADC_Start(&hadc);
+	  HAL_ADC_PollForConversion(&hadc,100);
+	  adc_val = HAL_ADC_GetValue(&hadc);
+	  HAL_ADC_Stop(&hadc);
+	  HAL_Delay(500);
+	  printf("ADC VALUE:%ld\n",adc_val);
+	  if(adc_val<500){
+		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0,GPIO_PIN_RESET);
+	  }
+	  if(adc_val>500){
+		  HAL_GPIO_WritePin(GPIO,GPIO_PIN_0,GPIO_PIN_SET);
+	  }
+	 
+  }
+```
 
 ## Output screen shots on serial monitor   :
  
- 
+ ### BEFORE INSERTING IN WATER:
+ ![image](https://github.com/Evangelin-Ruth/EXPERIMENT--05-SOIL-MOISTURE-SENSOR-INTERFACE-TO-IOT-DEVELOPMENT-BOARD-/assets/94219798/5a6895cc-00b7-4bf0-b590-81b8de81cd00)
+
+### AFTER INSERTING IN WATER
+![image](https://github.com/Evangelin-Ruth/EXPERIMENT--05-SOIL-MOISTURE-SENSOR-INTERFACE-TO-IOT-DEVELOPMENT-BOARD-/assets/94219798/92c641b6-a155-44e7-96d7-9aa34cd77e7d)
+
+### READINGS
+![image](https://github.com/Evangelin-Ruth/EXPERIMENT--05-SOIL-MOISTURE-SENSOR-INTERFACE-TO-IOT-DEVELOPMENT-BOARD-/assets/94219798/7b3b6188-8614-4adb-b592-024bae0ac9b5)
+
  
  
 ## Result :
